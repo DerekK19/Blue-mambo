@@ -108,6 +108,12 @@
 
 - (void)startScanning
 {
+    if (_centralManager.state != CBCentralManagerStatePoweredOn) {
+        // Defer scanning until manager comes online.
+        _connectWhenReady = YES;
+        return;
+    }
+    
     _scanState = YES;  // scanning
     [_scanButton setTitle: @"Stop"
                  forState: UIControlStateNormal];
@@ -118,7 +124,10 @@
     [self startScanningTimeoutMonitor];
     
     [_centralManager scanForPeripheralsWithServices:nil options:nil];
-    
+
+    _connectWhenReady = NO;
+    _subscribeWhenCharacteristicsFound = NO;
+
     [self.centralManagerActivityIndicator startAnimating];
 }
 
@@ -263,8 +272,9 @@
     [_centralManager cancelPeripheralConnection:peripheral];
 }
 
-- (void)centralDidConnect {
+- (void)peripheralDidConnect {
     // Pulse the screen blue.
+    UIColor *screenColour = self.view.backgroundColor;
     [UIView animateWithDuration:0.1
                      animations:^{
                          self.view.backgroundColor = [UIColor blueColor];
@@ -272,14 +282,16 @@
                      completion:^(BOOL finished) {
                          [UIView animateWithDuration:0.1
                                           animations:^{
-                                              self.view.backgroundColor =
-                                              [UIColor colorWithWhite:0.2 alpha:1.0];
+                                              self.view.backgroundColor = screenColour;
                                           }];
                      }];
+    [self showStatus:@"Connected"
+           andColour:[UIColor greenColor]];
 }
 
-- (void)centralDidDisconnect {
+- (void)peripheralDidDisconnect {
     // Pulse the screen red.
+    UIColor *screenColour = self.view.backgroundColor;
     [UIView animateWithDuration:0.1
                      animations:^{
                          self.view.backgroundColor = [UIColor redColor];
@@ -287,10 +299,11 @@
                      completion:^(BOOL finished) {
                          [UIView animateWithDuration:0.1
                                           animations:^{
-                                              self.view.backgroundColor =
-                                              [UIColor colorWithWhite:0.2 alpha:1.0];
+                                              self.view.backgroundColor = screenColour;
                                           }];
                      }];
+    [self showStatus:@"Idle"
+           andColour:[UIColor blackColor]];
 }
 
 #pragma mark - UI Action handlers
@@ -322,6 +335,61 @@
     DEBUGLog(@"centralManagerDidUpdateState %@", central);
     _hostBluetoothStatus.text = [self getCBCentralStateName:central.state];
     _hostBluetoothStatus.textColor = [UIColor whiteColor];
+
+    switch (central.state) {
+        case CBCentralManagerStatePoweredOn:
+            if (self.subscribeWhenCharacteristicsFound) {
+                if (self.connectedService) {
+                    [self subscribe];
+                    return;
+                }
+            }
+            
+            if (self.connectWhenReady) {
+                [self connect];
+                return;
+            }
+            break;
+        default:
+            DEBUGLog(@"centralManager did update: %d", central.state);
+            break;
+    }
+}
+
+- (void)centralManager:(CBCentralManager *)central
+  didConnectPeripheral:(CBPeripheral *)peripheral {
+    DEBUGLog(@"didConnect: %@", peripheral.name);
+    [self cancelConnectionTimeoutMonitor:peripheral];
+    _connectedPeripheral = peripheral;
+    [_connectedPeripheral setDelegate:self];
+    
+    // By specifying the actual services we want to connect to, this will
+    // work for iOS apps that are in the background.
+    //
+    // If you specify nil in the list of services and the application is in the
+    // background, it may sometimes only discover the Generic Access Profile
+    // and the Generic Attribute Profile services.
+    //[peripheral discoverServices:nil];
+    
+    [_connectedPeripheral discoverServices:self.serviceUUIDs];
+}
+
+- (void)centralManager:(CBCentralManager *)central
+didFailToConnectPeripheral:(CBPeripheral *)peripheral
+                 error:(NSError *)error {
+    DEBUGLog(@"failedToConnect: %@", peripheral);
+    [self cancelConnectionTimeoutMonitor:peripheral];
+//    [self.delegate centralClient:self connectDidFail:error];
+}
+
+- (void)centralManager:(CBCentralManager *)central
+didDisconnectPeripheral:(CBPeripheral *)peripheral
+                 error:(NSError *)error {
+    DEBUGLog(@"peripheralDidDisconnect: %@", peripheral);
+    _connectedPeripheral = nil;
+    _connectedService = nil;
+    
+    [self peripheralDidDisconnect];
 }
 
 - (void)centralManager:(CBCentralManager *)central
@@ -419,7 +487,7 @@ didDiscoverServices:(NSError *)error {
             self.connectedService = service;
         }
     }
-    [self centralDidConnect];
+    [self peripheralDidConnect];
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral
