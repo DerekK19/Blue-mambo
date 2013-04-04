@@ -6,8 +6,11 @@
 //  Copyright (c) 2013 ASB. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@interface ASBBroadcastController : UIViewController <CBPeripheralManagerDelegate>
 
-@interface ASBBroadcastController : UIViewController
+@property (nonatomic, strong) IBOutlet UILabel *hostBluetoothStatus;
+
+// label which displays peripheral manager activity
+@property (weak, nonatomic) IBOutlet UILabel *peripheralManagerStatus;
 
 @end

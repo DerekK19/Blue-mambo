@@ -6,8 +6,20 @@
 //  Copyright (c) 2013 ASB. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@interface ASBListenController : UIViewController <CBCentralManagerDelegate, CBPeripheralDelegate>
 
-@interface ASBListenController : UIViewController
+// initiate scanning
+@property (weak, nonatomic) IBOutlet UIButton *scanButton;
+
+// animate when central manager scanning, connecting, etc.
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *centralManagerActivityIndicator;
+
+// displays CBCentralManager status (role of iphone/ipad)
+@property (weak, nonatomic) IBOutlet UILabel *hostBluetoothStatus;
+
+// label which displays central manager activity
+@property (weak, nonatomic) IBOutlet UILabel *centralManagerStatus;
+
+- (IBAction)didPressScanButton;
 
 @end

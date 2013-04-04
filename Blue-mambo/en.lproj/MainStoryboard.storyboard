@@ -24,18 +24,57 @@
                                 <fontDescription key="fontDescription" type="system" size="system"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Xr-aL-raM">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Q0-g9-O2Y">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vA8-2V-TTV">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="73" id="cLF-py-798"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Scan">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPressScanButton" destination="2" eventType="touchUpInside" id="NjF-as-Eig"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.25060285937283877" green="0.49171475671167986" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="6Q0-g9-O2Y" firstAttribute="top" secondItem="6Xr-aL-raM" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="AcE-pa-TV7"/>
+                            <constraint firstAttribute="trailing" secondItem="6Xr-aL-raM" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="EOl-Hl-3lu"/>
+                            <constraint firstItem="vA8-2V-TTV" firstAttribute="centerX" secondItem="21" secondAttribute="centerX" type="default" id="Lsv-vf-zhu"/>
                             <constraint firstAttribute="trailing" secondItem="21" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="QBg-X6-fBV"/>
                             <constraint firstAttribute="trailing" secondItem="20" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Qxj-1L-2Yh"/>
                             <constraint firstItem="20" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Ty9-wx-CyI"/>
+                            <constraint firstItem="6Xr-aL-raM" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="TyD-qv-MwZ"/>
+                            <constraint firstItem="6Xr-aL-raM" firstAttribute="top" secondItem="16" secondAttribute="top" constant="12" id="ZcE-Vc-L1m"/>
                             <constraint firstItem="21" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Zmm-k2-2L7"/>
+                            <constraint firstItem="6Q0-g9-O2Y" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="jK2-0E-vcf"/>
                             <constraint firstItem="21" firstAttribute="top" secondItem="20" secondAttribute="bottom" constant="40" type="user" id="jX0-Wi-kmb"/>
+                            <constraint firstAttribute="trailing" secondItem="6Q0-g9-O2Y" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="uPM-xr-JXX"/>
+                            <constraint firstAttribute="bottom" secondItem="vA8-2V-TTV" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="wZT-vZ-ohn"/>
                             <constraint firstAttribute="centerY" secondItem="21" secondAttribute="centerY" type="user" id="yWk-L2-m9F"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Listen" image="listen.png" id="7"/>
+                    <connections>
+                        <outlet property="centralManagerStatus" destination="6Q0-g9-O2Y" id="WZO-2h-n7K"/>
+                        <outlet property="hostBluetoothStatus" destination="6Xr-aL-raM" id="yng-cH-3ZD"/>
+                        <outlet property="scanButton" destination="vA8-2V-TTV" id="Zen-s0-1H0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
             </objects>
@@ -61,10 +100,26 @@
                                 <fontDescription key="fontDescription" type="system" size="system"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMh-KD-LjG">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DIw-tB-exA">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.073474537533810391" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="22" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="0q6-IA-e8m"/>
+                            <constraint firstItem="bMh-KD-LjG" firstAttribute="top" secondItem="17" secondAttribute="top" constant="12" id="3Lf-vf-8Rh"/>
+                            <constraint firstAttribute="trailing" secondItem="DIw-tB-exA" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="8sW-tA-eGk"/>
+                            <constraint firstItem="DIw-tB-exA" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="ORM-FU-8JJ"/>
+                            <constraint firstItem="DIw-tB-exA" firstAttribute="top" secondItem="bMh-KD-LjG" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="SOC-ct-7dX"/>
+                            <constraint firstItem="bMh-KD-LjG" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="WLf-Fa-DLn"/>
+                            <constraint firstAttribute="trailing" secondItem="bMh-KD-LjG" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="XIn-M4-GND"/>
                             <constraint firstAttribute="trailing" secondItem="23" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="fR4-wH-Ih7"/>
                             <constraint firstItem="23" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="fzb-YA-SeR"/>
                             <constraint firstAttribute="centerY" secondItem="23" secondAttribute="centerY" type="user" id="llH-eD-iPS"/>
@@ -73,6 +128,10 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Broadcast" image="broadcast.png" id="6"/>
+                    <connections>
+                        <outlet property="hostBluetoothStatus" destination="bMh-KD-LjG" id="AUG-OC-UQc"/>
+                        <outlet property="peripheralManagerStatus" destination="DIw-tB-exA" id="1YY-pl-fXa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="12" sceneMemberID="firstResponder"/>
             </objects>
@@ -102,17 +161,6 @@
         <image name="broadcast.png" width="30" height="30"/>
         <image name="listen.png" width="30" height="30"/>
     </resources>
-    <classes>
-        <class className="ASBBroadcastController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ASBBroadcastController.h"/>
-        </class>
-        <class className="ASBListenController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ASBListenController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -12,6 +12,7 @@
 		7124CC1C170CCF22006543BE /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7124CC1A170CCF22006543BE /* Icon@2x.png */; };
 		7124CC1E170CCFDB006543BE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7124CC1D170CCFDB006543BE /* Podfile */; };
 		7124CC20170CCFFA006543BE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7124CC1F170CCFFA006543BE /* README.md */; };
+		7124CC24170CD92D006543BE /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7124CC23170CD92D006543BE /* CoreBluetooth.framework */; };
 		7134890A170CC0FA00F9FDA9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71348909170CC0FA00F9FDA9 /* UIKit.framework */; };
 		7134890C170CC0FA00F9FDA9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7134890B170CC0FA00F9FDA9 /* Foundation.framework */; };
 		7134890E170CC0FA00F9FDA9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7134890D170CC0FA00F9FDA9 /* CoreGraphics.framework */; };
@@ -37,6 +38,9 @@
 		7124CC1A170CCF22006543BE /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		7124CC1D170CCFDB006543BE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		7124CC1F170CCFFA006543BE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		7124CC23170CD92D006543BE /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		7124CC25170CDB17006543BE /* ASBLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASBLogging.h; sourceTree = "<group>"; };
+		7124CC26170CFE2E006543BE /* BlueCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueCommon.h; sourceTree = "<group>"; };
 		71348906170CC0FA00F9FDA9 /* Blue-mambo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Blue-mambo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71348909170CC0FA00F9FDA9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7134890B170CC0FA00F9FDA9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -66,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7124CC24170CD92D006543BE /* CoreBluetooth.framework in Frameworks */,
 				7134890A170CC0FA00F9FDA9 /* UIKit.framework in Frameworks */,
 				7134890C170CC0FA00F9FDA9 /* Foundation.framework in Frameworks */,
 				7134890E170CC0FA00F9FDA9 /* CoreGraphics.framework in Frameworks */,
@@ -79,7 +84,6 @@
 		7124CC21170CD0D5006543BE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				71348921170CC0FA00F9FDA9 /* MainStoryboard.storyboard */,
 				71348927170CC0FA00F9FDA9 /* listen.png */,
 				71348929170CC0FA00F9FDA9 /* listen@2x.png */,
 				7134892E170CC0FA00F9FDA9 /* broadcast.png */,
@@ -100,6 +104,7 @@
 				71348925170CC0FA00F9FDA9 /* ASBListenController.m */,
 				7134892B170CC0FA00F9FDA9 /* ASBBroadcastController.h */,
 				7134892C170CC0FA00F9FDA9 /* ASBBroadcastController.m */,
+				7124CC26170CFE2E006543BE /* BlueCommon.h */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -129,6 +134,7 @@
 			children = (
 				71348909170CC0FA00F9FDA9 /* UIKit.framework */,
 				7134890B170CC0FA00F9FDA9 /* Foundation.framework */,
+				7124CC23170CD92D006543BE /* CoreBluetooth.framework */,
 				7134890D170CC0FA00F9FDA9 /* CoreGraphics.framework */,
 				1402501527694D29ACF60F8B /* libPods.a */,
 			);
@@ -138,6 +144,7 @@
 		7134890F170CC0FA00F9FDA9 /* Blue-mambo */ = {
 			isa = PBXGroup;
 			children = (
+				71348921170CC0FA00F9FDA9 /* MainStoryboard.storyboard */,
 				7124CC22170CD108006543BE /* Controllers */,
 				7124CC21170CD0D5006543BE /* Resources */,
 				71348918170CC0FA00F9FDA9 /* ASBAppDelegate.h */,
@@ -150,6 +157,7 @@
 		71348910170CC0FA00F9FDA9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7124CC25170CDB17006543BE /* ASBLogging.h */,
 				71348911170CC0FA00F9FDA9 /* Blue-mambo-Info.plist */,
 				71348912170CC0FA00F9FDA9 /* InfoPlist.strings */,
 				71348915170CC0FA00F9FDA9 /* main.m */,
