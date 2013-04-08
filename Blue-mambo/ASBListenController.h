@@ -20,6 +20,13 @@
 // label which displays central manager activity
 @property (weak, nonatomic) IBOutlet UILabel *centralManagerStatus;
 
-- (IBAction)didPressScanButton;
+// Area for displaying log report
+@property (weak, nonatomic) IBOutlet UITextView *reportLog;
+
+// Disconnect
+@property (nonatomic, strong) IBOutlet UIButton *disconnectButton;
+
+- (IBAction)didPressScanButton:(id)sender;
+- (IBAction)didPressDisconnectButton:(id)sender;
 
 @end

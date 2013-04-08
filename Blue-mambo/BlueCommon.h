@@ -11,6 +11,7 @@
 
 #define SERVICENAME @"Test"
 #define SERVICEUUID @"7e57"
-#define CHARACTERISTICUUID @"b71e"
+#define CHARACTERISTICUUID1 @"b71e"
+#define CHARACTERISTICUUID2 @"b72e"
 
 #endif

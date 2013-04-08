@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		164DE46F9BE9469F94738195 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1402501527694D29ACF60F8B /* libPods.a */; };
 		65D0E5601711199700DC0B69 /* DGKBluetoothScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D0E55F1711199600DC0B69 /* DGKBluetoothScanner.m */; };
+		712351E117120A8F004261D4 /* Switch-Off-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 712351E017120A8F004261D4 /* Switch-Off-icon.png */; };
 		7124CC1B170CCF22006543BE /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7124CC19170CCF22006543BE /* Icon.png */; };
 		7124CC1C170CCF22006543BE /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7124CC1A170CCF22006543BE /* Icon@2x.png */; };
 		7124CC1E170CCFDB006543BE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7124CC1D170CCFDB006543BE /* Podfile */; };
@@ -37,6 +38,7 @@
 		4CBD74245D854020A7268E78 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		65D0E55E1711199600DC0B69 /* DGKBluetoothScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DGKBluetoothScanner.h; sourceTree = "<group>"; };
 		65D0E55F1711199600DC0B69 /* DGKBluetoothScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DGKBluetoothScanner.m; sourceTree = "<group>"; };
+		712351E017120A8F004261D4 /* Switch-Off-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Switch-Off-icon.png"; sourceTree = "<group>"; };
 		7124CC19170CCF22006543BE /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		7124CC1A170CCF22006543BE /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		7124CC1D170CCFDB006543BE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 		7124CC21170CD0D5006543BE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				712351E017120A8F004261D4 /* Switch-Off-icon.png */,
 				71348927170CC0FA00F9FDA9 /* listen.png */,
 				71348929170CC0FA00F9FDA9 /* listen@2x.png */,
 				7134892E170CC0FA00F9FDA9 /* broadcast.png */,
@@ -237,6 +240,7 @@
 				7124CC1C170CCF22006543BE /* Icon@2x.png in Resources */,
 				7124CC1E170CCFDB006543BE /* Podfile in Resources */,
 				7124CC20170CCFFA006543BE /* README.md in Resources */,
+				712351E117120A8F004261D4 /* Switch-Off-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +361,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Blue-mambo/Blue-mambo-Prefix.pch";
 				INFOPLIST_FILE = "Blue-mambo/Blue-mambo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -369,6 +374,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Blue-mambo/Blue-mambo-Prefix.pch";
 				INFOPLIST_FILE = "Blue-mambo/Blue-mambo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
