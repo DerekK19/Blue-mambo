@@ -13,6 +13,9 @@ typedef void(^DGKBluetoothScanTimeoutBlockType)();
 typedef void(^DGKBluetoothConnectSuccessBlockType)();
 typedef void(^DGKBluetoothConnectTimeoutBlockType)();
 typedef void(^DGKBluetoothDisconnectSuccessBlockType)();
+typedef void(^DGKBluetoothDiscoverSuccessBlockType)(CBPeripheral *peripheral);
+typedef void(^DGKBluetoothCharacteristicsSuccessBlockType)(CBService *service);
+typedef void(^DGKBluetoothCharacteristicChangeBlockType)(CBCharacteristic *characteristic);
 
 @interface DGKBluetoothScanner : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
@@ -29,5 +32,15 @@ typedef void(^DGKBluetoothDisconnectSuccessBlockType)();
              onDisconnect:(DGKBluetoothDisconnectSuccessBlockType)peripheral
                onTimedOut:(DGKBluetoothConnectTimeoutBlockType)timeout;
 - (void)disconnect:(CBPeripheral *)peripheral;
+
+- (void)discoverServices:(CBPeripheral *)peripheral
+               withUUIDs:(NSArray *)serviceUUIDs
+               onFoundServices:(DGKBluetoothDiscoverSuccessBlockType)block;
+
+- (void)getCharacteristics:(CBService *)service
+                 withUUIDS:(NSArray *)characteristicUUIDs
+                andTimeout:(NSTimeInterval)seconds
+    onFoundCharacteristics:(DGKBluetoothCharacteristicsSuccessBlockType)foundBlock
+   onChangedCharacteristic:(DGKBluetoothCharacteristicChangeBlockType)changeBlock;
 
 @end

@@ -20,6 +20,12 @@
 @property (nonatomic, copy) DGKBluetoothConnectSuccessBlockType connectBlock;
 @property (nonatomic, copy) DGKBluetoothDisconnectSuccessBlockType disconnectBlock;
 @property (nonatomic, copy) DGKBluetoothConnectTimeoutBlockType connectTimeoutBlock;
+@property (nonatomic, strong) CBPeripheral *currentPeripheral;
+@property (nonatomic, copy) DGKBluetoothDiscoverSuccessBlockType discoverBlock;
+@property (nonatomic, strong) CBService *currentService;
+@property (nonatomic, copy) DGKBluetoothCharacteristicsSuccessBlockType characteristicsBlock;
+@property (nonatomic, copy) DGKBluetoothCharacteristicChangeBlockType changeBlock;
+@property (nonatomic) NSTimeInterval requestTimeout;
 
 - (void)startScanning;
 
@@ -130,26 +136,75 @@
     [_centralManager cancelPeripheralConnection:peripheral];
 }
 
-- (void)startConnectionTimeoutMonitor:(CBPeripheral *)peripheral {
+- (void)startConnectionTimeoutMonitor:(CBPeripheral *)peripheral
+{
     [self cancelConnectionTimeoutMonitor:peripheral];
     [self performSelector:@selector(connectionDidTimeout:)
                withObject:peripheral
                afterDelay:_connectTimeout];
 }
 
-- (void)cancelConnectionTimeoutMonitor:(CBPeripheral *)peripheral {
+- (void)cancelConnectionTimeoutMonitor:(CBPeripheral *)peripheral
+{
     [NSObject cancelPreviousPerformRequestsWithTarget:self
                                              selector:@selector(connectionDidTimeout:)
                                                object:peripheral];
 }
 
-- (void)connectionDidTimeout:(CBPeripheral *)peripheral {
+- (void)connectionDidTimeout:(CBPeripheral *)peripheral
+{
     DEBUGLog(@"%@", peripheral.UUID);
     
     //    [self.delegate centralClient:self
     //                  connectDidFail:[[self class] errorWithDescription:@"Unable to connect to BTLE device."]];
     [_centralManager cancelPeripheralConnection:peripheral];
     _connectTimeoutBlock();
+}
+
+- (void)discoverServices:(CBPeripheral *)peripheral
+               withUUIDs:(NSArray *)serviceUUIDs
+         onFoundServices:(DGKBluetoothDiscoverSuccessBlockType)block
+{
+    DEBUGLog(@"Start discovering...");
+    _discoverBlock = block;
+    _currentPeripheral = peripheral;
+    [peripheral setDelegate:self];
+    [peripheral discoverServices:serviceUUIDs];
+}
+
+- (void)getCharacteristics:(CBService *)service
+                 withUUIDS:(NSArray *)characteristicUUIDs
+                andTimeout:(NSTimeInterval)seconds
+    onFoundCharacteristics:(DGKBluetoothCharacteristicsSuccessBlockType)foundBlock
+   onChangedCharacteristic:(DGKBluetoothCharacteristicChangeBlockType)changeBlock
+{
+    _characteristicsBlock = foundBlock;
+    _changeBlock = changeBlock;
+    [_currentPeripheral discoverCharacteristics:characteristicUUIDs
+                                     forService:service];
+}
+
+- (void)startRequestTimeout:(CBCharacteristic *)characteristic {
+    [self cancelRequestTimeoutMonitor:characteristic];
+    [self performSelector:@selector(requestDidTimeout:)
+               withObject:characteristic
+               afterDelay:_requestTimeout];
+}
+
+- (void)cancelRequestTimeoutMonitor:(CBCharacteristic *)characteristic {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self
+                                             selector:@selector(requestDidTimeout:)
+                                               object:characteristic];
+}
+
+- (void)requestDidTimeout:(CBCharacteristic *)characteristic {
+    DEBUGLog(@"%@", characteristic);
+    
+    //    [self.delegate centralClient:self
+    //        requestForCharacteristic:characteristic
+    //                         didFail:[[self class] errorWithDescription:@"Unable to request data from BTLE device."]];
+    [_currentPeripheral setNotifyValue:NO
+                     forCharacteristic:characteristic];
 }
 
 
@@ -238,6 +293,47 @@ didDisconnectPeripheral:(CBPeripheral *)peripheral
 {
     DEBUGLog(@"%@", peripheral);
     _disconnectBlock();
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral
+didDiscoverServices:(NSError *)error
+{
+    if (error) {
+        //        [self.delegate centralClient:self connectDidFail:error];
+        DEBUGLog(@"Error: %@", error);
+        // TODO: Need to deal with resetting the state at this point.
+        return;
+    }
+    DEBUGLog(@"Discovered");
+    _discoverBlock(peripheral);
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral
+didDiscoverCharacteristicsForService:(CBService *)service
+             error:(NSError *)error
+{
+    if (error)
+    {
+        //        [self.delegate centralClient:self connectDidFail:error];
+        DEBUGLog(@"Error: %@", error);
+        return;
+    }
+    _characteristicsBlock(service);
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral
+didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic
+             error:(NSError *)error
+{
+    DEBUGLog(@"Characteristic changed");
+    [self cancelRequestTimeoutMonitor:characteristic];
+    
+    if (error) {
+        DEBUGLog(@"%@", error);
+        //        [self.delegate centralClient:self requestForCharacteristic:characteristic didFail:error];
+        return;
+    }
+    _changeBlock (characteristic);
 }
 
 @end
