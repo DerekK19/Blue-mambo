@@ -1,6 +1,6 @@
 #!/bin/bash
 
-/usr/local/bin/doxygen /Users/derek/Solutions/Public/Blue-mambo/Doxyfile
+( cat /Users/derek/Solutions/Public/Blue-mambo/Doxyfile ; echo "OUTPUT_DIRECTORY=/Users/derek/Documentation/BlueMambo" ) | /usr/local/bin/doxygen -
 
 pushd /Users/derek/Documentation/BlueMambo/html
 make install
