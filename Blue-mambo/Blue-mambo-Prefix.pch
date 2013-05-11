@@ -15,4 +15,4 @@
 
 #import <CoreBluetooth/CoreBluetooth.h>
 
-#import "ASBLogging.h"
+#import "DGKBLogging.h"

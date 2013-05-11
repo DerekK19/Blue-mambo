@@ -1,12 +1,12 @@
 //
-//  ASBBroadcastController.h
+//  DGKBBroadcastController.h
 //  Blue-mambo
 //
 //  Created by Derek Knight on 4/04/13.
-//  Copyright (c) 2013 ASB. All rights reserved.
+//  Copyright (c) 2013 DGKB. All rights reserved.
 //
 
-@interface ASBBroadcastController : UIViewController <CBPeripheralManagerDelegate>
+@interface DGKBBroadcastController : UIViewController <CBPeripheralManagerDelegate>
 
 @property (nonatomic, strong) IBOutlet UILabel *hostBluetoothStatus;
 

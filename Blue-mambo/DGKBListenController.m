@@ -1,27 +1,27 @@
 //
-//  ASBListenController.m
+//  DGKBListenController.m
 //  Blue-mambo
 //
 //  Created by Derek Knight on 4/04/13.
-//  Copyright (c) 2013 ASB. All rights reserved.
+//  Copyright (c) 2013 DGKB. All rights reserved.
 //
 
-#import "ASBListenController.h"
+#import "DGKBListenController.h"
 #import "BlueCommon.h"
-#import "DGKBluetoothScanner.h"
+#import "DGKBBluetoothScanner.h"
 
-#define ASBBlueScanningTimeout 10.0
-#define ASBBlueConnectionTimeout 10.0
-#define ASBBlueRequestTimeout 20.0
+#define DGKBBlueScanningTimeout 10.0
+#define DGKBBlueConnectionTimeout 10.0
+#define DGKBBlueRequestTimeout 20.0
 #define SCREENCOLOUR [UIColor colorWithRed:0.25 green:0.5 blue:1.0 alpha:1.0]
 
-@interface ASBListenController ()
+@interface DGKBListenController ()
 
 @property (nonatomic, strong) NSString *serviceName;
 @property (nonatomic, strong) NSArray *serviceUUIDs;  // CBUUIDs
 @property (nonatomic, strong) NSArray *characteristicUUIDs;  // CBUUIDs
 
-@property (nonatomic, strong) DGKBluetoothScanner *scanner;
+@property (nonatomic, strong) DGKBBluetoothScanner *scanner;
 @property (nonatomic) BOOL scanState;
 
 // Session information
@@ -43,7 +43,7 @@
 
 @end
 
-@implementation ASBListenController
+@implementation DGKBListenController
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -58,7 +58,7 @@
                              ];
 
     // Initialize scanner
-    _scanner = [[DGKBluetoothScanner alloc]init];
+    _scanner = [[DGKBBluetoothScanner alloc]init];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -130,7 +130,7 @@
     
     _scanState = YES;  // scanning
     
-    [_scanner startScanningWithTimeout:ASBBlueScanningTimeout
+    [_scanner startScanningWithTimeout:DGKBBlueScanningTimeout
                      onFoundPeripheral:^(CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI)
                                        {
                                            [self foundPeripheral:peripheral
@@ -217,7 +217,7 @@
     [self showStatus:@"Connecting."
            andColour:[UIColor greenColor]];
     [_scanner connectPeripheral:peripheral
-                        timeout:ASBBlueConnectionTimeout
+                        timeout:DGKBBlueConnectionTimeout
                       onConnect:^
                                 {
                                     [self connectedPeripheral:peripheral];
@@ -277,7 +277,7 @@
     
             [_scanner getCharacteristics:_connectedService
                                withUUIDS:_characteristicUUIDs
-                              andTimeout:ASBBlueRequestTimeout
+                              andTimeout:DGKBBlueRequestTimeout
                   onFoundCharacteristics:^(CBService *service)
                                          {
                                              [self foundCharacteristics:service];
@@ -374,7 +374,7 @@
         
         [_scanner getCharacteristics:_connectedService
                            withUUIDS:_characteristicUUIDs
-                          andTimeout:ASBBlueRequestTimeout
+                          andTimeout:DGKBBlueRequestTimeout
               onFoundCharacteristics:^(CBService *service)
                                      {
                                          // For logging, just print out all the discovered services.
@@ -442,7 +442,7 @@
     [self cancelRequestTimeoutMonitor:characteristic];
     [self performSelector:@selector(requestDidTimeout:)
                withObject:characteristic
-               afterDelay:ASBBlueRequestTimeout];
+               afterDelay:DGKBBlueRequestTimeout];
 }
 
 - (void)cancelRequestTimeoutMonitor:(CBCharacteristic *)characteristic {

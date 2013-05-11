@@ -1,14 +1,14 @@
 //
-//  ASBAppDelegate.m
+//  DGKBAppDelegate.m
 //  Blue-mambo
 //
 //  Created by Derek Knight on 4/04/13.
-//  Copyright (c) 2013 ASB. All rights reserved.
+//  Copyright (c) 2013 DGKB. All rights reserved.
 //
 
-#import "ASBAppDelegate.h"
+#import "DGKBAppDelegate.h"
 
-@implementation ASBAppDelegate
+@implementation DGKBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

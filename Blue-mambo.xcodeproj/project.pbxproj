@@ -8,27 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		164DE46F9BE9469F94738195 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1402501527694D29ACF60F8B /* libPods.a */; };
-		65D0E5601711199700DC0B69 /* DGKBluetoothScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D0E55F1711199600DC0B69 /* DGKBluetoothScanner.m */; };
+		65D0E5601711199700DC0B69 /* DGKBBluetoothScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D0E55F1711199600DC0B69 /* DGKBBluetoothScanner.m */; };
 		712351E117120A8F004261D4 /* Switch-Off-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 712351E017120A8F004261D4 /* Switch-Off-icon.png */; };
 		7124CC1B170CCF22006543BE /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7124CC19170CCF22006543BE /* Icon.png */; };
 		7124CC1C170CCF22006543BE /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7124CC1A170CCF22006543BE /* Icon@2x.png */; };
-		7124CC1E170CCFDB006543BE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7124CC1D170CCFDB006543BE /* Podfile */; };
-		7124CC20170CCFFA006543BE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7124CC1F170CCFFA006543BE /* README.md */; };
 		7124CC24170CD92D006543BE /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7124CC23170CD92D006543BE /* CoreBluetooth.framework */; };
 		7134890A170CC0FA00F9FDA9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71348909170CC0FA00F9FDA9 /* UIKit.framework */; };
 		7134890C170CC0FA00F9FDA9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7134890B170CC0FA00F9FDA9 /* Foundation.framework */; };
 		7134890E170CC0FA00F9FDA9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7134890D170CC0FA00F9FDA9 /* CoreGraphics.framework */; };
 		71348914170CC0FA00F9FDA9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71348912170CC0FA00F9FDA9 /* InfoPlist.strings */; };
 		71348916170CC0FA00F9FDA9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 71348915170CC0FA00F9FDA9 /* main.m */; };
-		7134891A170CC0FA00F9FDA9 /* ASBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71348919170CC0FA00F9FDA9 /* ASBAppDelegate.m */; };
+		7134891A170CC0FA00F9FDA9 /* DGKBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71348919170CC0FA00F9FDA9 /* DGKBAppDelegate.m */; };
 		7134891C170CC0FA00F9FDA9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7134891B170CC0FA00F9FDA9 /* Default.png */; };
 		7134891E170CC0FA00F9FDA9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7134891D170CC0FA00F9FDA9 /* Default@2x.png */; };
 		71348920170CC0FA00F9FDA9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7134891F170CC0FA00F9FDA9 /* Default-568h@2x.png */; };
 		71348923170CC0FA00F9FDA9 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71348921170CC0FA00F9FDA9 /* MainStoryboard.storyboard */; };
-		71348926170CC0FA00F9FDA9 /* ASBListenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71348925170CC0FA00F9FDA9 /* ASBListenController.m */; };
+		71348926170CC0FA00F9FDA9 /* DGKBListenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71348925170CC0FA00F9FDA9 /* DGKBListenController.m */; };
 		71348928170CC0FA00F9FDA9 /* listen.png in Resources */ = {isa = PBXBuildFile; fileRef = 71348927170CC0FA00F9FDA9 /* listen.png */; };
 		7134892A170CC0FA00F9FDA9 /* listen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71348929170CC0FA00F9FDA9 /* listen@2x.png */; };
-		7134892D170CC0FA00F9FDA9 /* ASBBroadcastController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134892C170CC0FA00F9FDA9 /* ASBBroadcastController.m */; };
+		7134892D170CC0FA00F9FDA9 /* DGKBBroadcastController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134892C170CC0FA00F9FDA9 /* DGKBBroadcastController.m */; };
 		7134892F170CC0FA00F9FDA9 /* broadcast.png in Resources */ = {isa = PBXBuildFile; fileRef = 7134892E170CC0FA00F9FDA9 /* broadcast.png */; };
 		71348931170CC0FA00F9FDA9 /* broadcast@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71348930170CC0FA00F9FDA9 /* broadcast@2x.png */; };
 /* End PBXBuildFile section */
@@ -36,36 +34,37 @@
 /* Begin PBXFileReference section */
 		1402501527694D29ACF60F8B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CBD74245D854020A7268E78 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
-		65D0E55E1711199600DC0B69 /* DGKBluetoothScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DGKBluetoothScanner.h; sourceTree = "<group>"; };
-		65D0E55F1711199600DC0B69 /* DGKBluetoothScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DGKBluetoothScanner.m; sourceTree = "<group>"; };
+		65684106173DD09E00C4F150 /* Doxyfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Doxyfile; sourceTree = "<group>"; };
+		65D0E55E1711199600DC0B69 /* DGKBBluetoothScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DGKBBluetoothScanner.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		65D0E55F1711199600DC0B69 /* DGKBBluetoothScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DGKBBluetoothScanner.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		712351E017120A8F004261D4 /* Switch-Off-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Switch-Off-icon.png"; sourceTree = "<group>"; };
 		7124CC19170CCF22006543BE /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		7124CC1A170CCF22006543BE /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		7124CC1D170CCFDB006543BE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		7124CC1D170CCFDB006543BE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		7124CC1F170CCFFA006543BE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		7124CC23170CD92D006543BE /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		7124CC25170CDB17006543BE /* ASBLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASBLogging.h; sourceTree = "<group>"; };
-		7124CC26170CFE2E006543BE /* BlueCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueCommon.h; sourceTree = "<group>"; };
+		7124CC25170CDB17006543BE /* DGKBLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DGKBLogging.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		7124CC26170CFE2E006543BE /* BlueCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BlueCommon.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		71348906170CC0FA00F9FDA9 /* Blue-mambo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Blue-mambo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71348909170CC0FA00F9FDA9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7134890B170CC0FA00F9FDA9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7134890D170CC0FA00F9FDA9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		71348911170CC0FA00F9FDA9 /* Blue-mambo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Blue-mambo-Info.plist"; sourceTree = "<group>"; };
 		71348913170CC0FA00F9FDA9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		71348915170CC0FA00F9FDA9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		71348917170CC0FA00F9FDA9 /* Blue-mambo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Blue-mambo-Prefix.pch"; sourceTree = "<group>"; };
-		71348918170CC0FA00F9FDA9 /* ASBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASBAppDelegate.h; sourceTree = "<group>"; };
-		71348919170CC0FA00F9FDA9 /* ASBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASBAppDelegate.m; sourceTree = "<group>"; };
+		71348915170CC0FA00F9FDA9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		71348917170CC0FA00F9FDA9 /* Blue-mambo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "Blue-mambo-Prefix.pch"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		71348918170CC0FA00F9FDA9 /* DGKBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DGKBAppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		71348919170CC0FA00F9FDA9 /* DGKBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DGKBAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7134891B170CC0FA00F9FDA9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		7134891D170CC0FA00F9FDA9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		7134891F170CC0FA00F9FDA9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		71348922170CC0FA00F9FDA9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		71348924170CC0FA00F9FDA9 /* ASBListenController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASBListenController.h; sourceTree = "<group>"; };
-		71348925170CC0FA00F9FDA9 /* ASBListenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASBListenController.m; sourceTree = "<group>"; };
+		71348924170CC0FA00F9FDA9 /* DGKBListenController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DGKBListenController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		71348925170CC0FA00F9FDA9 /* DGKBListenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DGKBListenController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		71348927170CC0FA00F9FDA9 /* listen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listen.png; sourceTree = "<group>"; };
 		71348929170CC0FA00F9FDA9 /* listen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listen@2x.png"; sourceTree = "<group>"; };
-		7134892B170CC0FA00F9FDA9 /* ASBBroadcastController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASBBroadcastController.h; sourceTree = "<group>"; };
-		7134892C170CC0FA00F9FDA9 /* ASBBroadcastController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASBBroadcastController.m; sourceTree = "<group>"; };
+		7134892B170CC0FA00F9FDA9 /* DGKBBroadcastController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DGKBBroadcastController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		7134892C170CC0FA00F9FDA9 /* DGKBBroadcastController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DGKBBroadcastController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7134892E170CC0FA00F9FDA9 /* broadcast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = broadcast.png; sourceTree = "<group>"; };
 		71348930170CC0FA00F9FDA9 /* broadcast@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "broadcast@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,10 +105,10 @@
 		7124CC22170CD108006543BE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				71348924170CC0FA00F9FDA9 /* ASBListenController.h */,
-				71348925170CC0FA00F9FDA9 /* ASBListenController.m */,
-				7134892B170CC0FA00F9FDA9 /* ASBBroadcastController.h */,
-				7134892C170CC0FA00F9FDA9 /* ASBBroadcastController.m */,
+				71348924170CC0FA00F9FDA9 /* DGKBListenController.h */,
+				71348925170CC0FA00F9FDA9 /* DGKBListenController.m */,
+				7134892B170CC0FA00F9FDA9 /* DGKBBroadcastController.h */,
+				7134892C170CC0FA00F9FDA9 /* DGKBBroadcastController.m */,
 				7124CC26170CFE2E006543BE /* BlueCommon.h */,
 			);
 			name = Controllers;
@@ -118,12 +117,13 @@
 		713488FD170CC0FA00F9FDA9 = {
 			isa = PBXGroup;
 			children = (
-				7124CC1D170CCFDB006543BE /* Podfile */,
-				7124CC1F170CCFFA006543BE /* README.md */,
 				7134890F170CC0FA00F9FDA9 /* Blue-mambo */,
 				71348908170CC0FA00F9FDA9 /* Frameworks */,
 				71348907170CC0FA00F9FDA9 /* Products */,
 				4CBD74245D854020A7268E78 /* Pods.xcconfig */,
+				65684106173DD09E00C4F150 /* Doxyfile */,
+				7124CC1D170CCFDB006543BE /* Podfile */,
+				7124CC1F170CCFFA006543BE /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -151,10 +151,10 @@
 			isa = PBXGroup;
 			children = (
 				71348921170CC0FA00F9FDA9 /* MainStoryboard.storyboard */,
-				71348918170CC0FA00F9FDA9 /* ASBAppDelegate.h */,
-				71348919170CC0FA00F9FDA9 /* ASBAppDelegate.m */,
-				65D0E55E1711199600DC0B69 /* DGKBluetoothScanner.h */,
-				65D0E55F1711199600DC0B69 /* DGKBluetoothScanner.m */,
+				71348918170CC0FA00F9FDA9 /* DGKBAppDelegate.h */,
+				71348919170CC0FA00F9FDA9 /* DGKBAppDelegate.m */,
+				65D0E55E1711199600DC0B69 /* DGKBBluetoothScanner.h */,
+				65D0E55F1711199600DC0B69 /* DGKBBluetoothScanner.m */,
 				7124CC22170CD108006543BE /* Controllers */,
 				7124CC21170CD0D5006543BE /* Resources */,
 				71348910170CC0FA00F9FDA9 /* Supporting Files */,
@@ -165,7 +165,7 @@
 		71348910170CC0FA00F9FDA9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7124CC25170CDB17006543BE /* ASBLogging.h */,
+				7124CC25170CDB17006543BE /* DGKBLogging.h */,
 				71348911170CC0FA00F9FDA9 /* Blue-mambo-Info.plist */,
 				71348912170CC0FA00F9FDA9 /* InfoPlist.strings */,
 				71348915170CC0FA00F9FDA9 /* main.m */,
@@ -238,8 +238,6 @@
 				71348931170CC0FA00F9FDA9 /* broadcast@2x.png in Resources */,
 				7124CC1B170CCF22006543BE /* Icon.png in Resources */,
 				7124CC1C170CCF22006543BE /* Icon@2x.png in Resources */,
-				7124CC1E170CCFDB006543BE /* Podfile in Resources */,
-				7124CC20170CCFFA006543BE /* README.md in Resources */,
 				712351E117120A8F004261D4 /* Switch-Off-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,10 +267,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				71348916170CC0FA00F9FDA9 /* main.m in Sources */,
-				7134891A170CC0FA00F9FDA9 /* ASBAppDelegate.m in Sources */,
-				71348926170CC0FA00F9FDA9 /* ASBListenController.m in Sources */,
-				7134892D170CC0FA00F9FDA9 /* ASBBroadcastController.m in Sources */,
-				65D0E5601711199700DC0B69 /* DGKBluetoothScanner.m in Sources */,
+				7134891A170CC0FA00F9FDA9 /* DGKBAppDelegate.m in Sources */,
+				71348926170CC0FA00F9FDA9 /* DGKBListenController.m in Sources */,
+				7134892D170CC0FA00F9FDA9 /* DGKBBroadcastController.m in Sources */,
+				65D0E5601711199700DC0B69 /* DGKBBluetoothScanner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

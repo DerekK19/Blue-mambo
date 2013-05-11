@@ -3,7 +3,7 @@
 //  Blue-mambo
 //
 //  Created by Derek Knight on 4/04/13.
-//  Copyright (c) 2013 ASB. All rights reserved.
+//  Copyright (c) 2013 DGKB. All rights reserved.
 //
 
 #ifndef Blue_mambo_BlueCommon_h

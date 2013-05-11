@@ -1,12 +1,12 @@
 //
-//  ASBListenController.h
+//  DGKBListenController.h
 //  Blue-mambo
 //
 //  Created by Derek Knight on 4/04/13.
-//  Copyright (c) 2013 ASB. All rights reserved.
+//  Copyright (c) 2013 DGKB. All rights reserved.
 //
 
-@interface ASBListenController : UIViewController <CBCentralManagerDelegate, CBPeripheralDelegate>
+@interface DGKBListenController : UIViewController <CBCentralManagerDelegate, CBPeripheralDelegate>
 
 // initiate scanning
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;

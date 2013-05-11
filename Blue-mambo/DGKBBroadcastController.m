@@ -1,17 +1,17 @@
 //
-//  ASBBroadcastController.m
+//  DGKBBroadcastController.m
 //  Blue-mambo
 //
 //  Created by Derek Knight on 4/04/13.
-//  Copyright (c) 2013 ASB. All rights reserved.
+//  Copyright (c) 2013 DGKB. All rights reserved.
 //
 
-#import "ASBBroadcastController.h"
+#import "DGKBBroadcastController.h"
 #import "BlueCommon.h"
 
 #define SCREENCOLOUR [UIColor blueColor]
 
-@interface ASBBroadcastController ()
+@interface DGKBBroadcastController ()
 
 @property(nonatomic, strong) NSString *serviceName;
 @property(nonatomic, strong) CBUUID *serviceUUID;
@@ -32,7 +32,7 @@
 
 @end
 
-@implementation ASBBroadcastController
+@implementation DGKBBroadcastController
 
 - (void)viewDidAppear:(BOOL)animated
 {

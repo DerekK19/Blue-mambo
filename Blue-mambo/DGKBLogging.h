@@ -1,9 +1,9 @@
 //
-//  ASBLogging.h
+//  DGKBLogging.h
 //  FastMobile
 //
 //  Created by Derek Knight on 9/03/11.
-//  Copyright 2011 ASB. All rights reserved.
+//  Copyright 2011 DGKB. All rights reserved.
 //
 
 /**
@@ -41,8 +41,8 @@
 
  */
 
-//#import "LoggerClient.h"
-//#import "LoggerCommon.h"
+#import "LoggerClient.h"
+#import "LoggerCommon.h"
 
 // IMPORTANT: These values should not be checked in as YES - SHOW_ALL_DEBUG, LOW_LEVEL_DEBUG, SHOW_ALL_DEBUG, LOW_LEVEL_DEBUG
 // Change this locally for debugging only - logging slows UI down severely

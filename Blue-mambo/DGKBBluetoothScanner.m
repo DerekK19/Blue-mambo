@@ -1,37 +1,37 @@
 //
-//  DGKBluetoothScanner.m
+//  DGKBBluetoothScanner.m
 //  Blue-mambo
 //
 //  Created by Derek Knight on 7/04/13.
-//  Copyright (c) 2013 ASB. All rights reserved.
+//  Copyright (c) 2013 DGKB. All rights reserved.
 //
 
-#import "DGKBluetoothScanner.h"
+#import "DGKBBluetoothScanner.h"
 
-@interface DGKBluetoothScanner ()
+@interface DGKBBluetoothScanner ()
 
 @property (nonatomic, strong) CBCentralManager *centralManager;
 @property (nonatomic) NSTimeInterval scanTimeout;
-@property (nonatomic, copy) DGKBluetoothScanSuccessBlockType scanBlock;
-@property (nonatomic, copy) DGKBluetoothScanTimeoutBlockType scanTimeoutBlock;
+@property (nonatomic, copy) DGKBBluetoothScanSuccessBlockType scanBlock;
+@property (nonatomic, copy) DGKBBluetoothScanTimeoutBlockType scanTimeoutBlock;
 @property (nonatomic, assign) BOOL scanWhenReady;
 @property (nonatomic, assign) BOOL scanState;
 @property (nonatomic) NSTimeInterval connectTimeout;
-@property (nonatomic, copy) DGKBluetoothConnectSuccessBlockType connectBlock;
-@property (nonatomic, copy) DGKBluetoothDisconnectSuccessBlockType disconnectBlock;
-@property (nonatomic, copy) DGKBluetoothConnectTimeoutBlockType connectTimeoutBlock;
+@property (nonatomic, copy) DGKBBluetoothConnectSuccessBlockType connectBlock;
+@property (nonatomic, copy) DGKBBluetoothDisconnectSuccessBlockType disconnectBlock;
+@property (nonatomic, copy) DGKBBluetoothConnectTimeoutBlockType connectTimeoutBlock;
 @property (nonatomic, strong) CBPeripheral *currentPeripheral;
-@property (nonatomic, copy) DGKBluetoothDiscoverSuccessBlockType discoverBlock;
+@property (nonatomic, copy) DGKBBluetoothDiscoverSuccessBlockType discoverBlock;
 @property (nonatomic, strong) CBService *currentService;
-@property (nonatomic, copy) DGKBluetoothCharacteristicsSuccessBlockType characteristicsBlock;
-@property (nonatomic, copy) DGKBluetoothCharacteristicChangeBlockType changeBlock;
+@property (nonatomic, copy) DGKBBluetoothCharacteristicsSuccessBlockType characteristicsBlock;
+@property (nonatomic, copy) DGKBBluetoothCharacteristicChangeBlockType changeBlock;
 @property (nonatomic) NSTimeInterval requestTimeout;
 
 - (void)startScanning;
 
 @end
 
-@implementation DGKBluetoothScanner
+@implementation DGKBBluetoothScanner
 
 - (id)init
 {
@@ -49,8 +49,8 @@
 }
 
 - (void)startScanningWithTimeout:(NSTimeInterval)seconds
-               onFoundPeripheral:(DGKBluetoothScanSuccessBlockType)block
-                      onTimedOut:(DGKBluetoothScanTimeoutBlockType)timeout
+               onFoundPeripheral:(DGKBBluetoothScanSuccessBlockType)block
+                      onTimedOut:(DGKBBluetoothScanTimeoutBlockType)timeout
 {
     DEBUGLog(@"Starting scan (%1.1f)...", seconds);
     _scanTimeout = seconds;
@@ -109,9 +109,9 @@
 
 - (void)connectPeripheral:(CBPeripheral *)peripheral
                   timeout:(NSTimeInterval)seconds
-                onConnect:(DGKBluetoothConnectSuccessBlockType)connectBlock
-             onDisconnect:(DGKBluetoothDisconnectSuccessBlockType)disconnectBlock
-               onTimedOut:(DGKBluetoothConnectTimeoutBlockType)timeoutBlock
+                onConnect:(DGKBBluetoothConnectSuccessBlockType)connectBlock
+             onDisconnect:(DGKBBluetoothDisconnectSuccessBlockType)disconnectBlock
+               onTimedOut:(DGKBBluetoothConnectTimeoutBlockType)timeoutBlock
 {
     DEBUGLog(@"Starting connection...");
     
@@ -163,7 +163,7 @@
 
 - (void)discoverServices:(CBPeripheral *)peripheral
                withUUIDs:(NSArray *)serviceUUIDs
-         onFoundServices:(DGKBluetoothDiscoverSuccessBlockType)block
+         onFoundServices:(DGKBBluetoothDiscoverSuccessBlockType)block
 {
     DEBUGLog(@"Start discovering...");
     _discoverBlock = block;
@@ -175,8 +175,8 @@
 - (void)getCharacteristics:(CBService *)service
                  withUUIDS:(NSArray *)characteristicUUIDs
                 andTimeout:(NSTimeInterval)seconds
-    onFoundCharacteristics:(DGKBluetoothCharacteristicsSuccessBlockType)foundBlock
-   onChangedCharacteristic:(DGKBluetoothCharacteristicChangeBlockType)changeBlock
+    onFoundCharacteristics:(DGKBBluetoothCharacteristicsSuccessBlockType)foundBlock
+   onChangedCharacteristic:(DGKBBluetoothCharacteristicChangeBlockType)changeBlock
 {
     _characteristicsBlock = foundBlock;
     _changeBlock = changeBlock;
