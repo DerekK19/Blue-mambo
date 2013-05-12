@@ -15,34 +15,121 @@
 #define DGKBBlueRequestTimeout 20.0
 #define SCREENCOLOUR [UIColor colorWithRed:0.25 green:0.5 blue:1.0 alpha:1.0]
 
+/**
+ @extends DGKBListenController
+ @addtogroup Controllers
+ @{
+ */
+/**
+ @brief Bluetooth Listener extension
+ 
+ Internal functionality for Bluetooth listener. Private extensions to DGKBListenController @see DGKBListenController
+ */
 @interface DGKBListenController ()
 
-@property (nonatomic, strong) NSString *serviceName;
-@property (nonatomic, strong) NSArray *serviceUUIDs;  // CBUUIDs
-@property (nonatomic, strong) NSArray *characteristicUUIDs;  // CBUUIDs
+@property (nonatomic, strong) NSString *serviceName;                    ///< The service name
+@property (nonatomic, strong) NSArray *serviceUUIDs;                    ///< The service UUIDs to scan for
+@property (nonatomic, strong) NSArray *characteristicUUIDs;             ///< The characteristic UUIDs to scan for
 
-@property (nonatomic, strong) DGKBBluetoothScanner *scanner;
-@property (nonatomic) BOOL scanState;
+@property (nonatomic, strong) DGKBBluetoothScanner *scanner;            ///< The scanner
+@property (nonatomic) BOOL scanState;                                   ///< Are we currently scanning?
 
-// Session information
-@property(nonatomic, strong) CBPeripheral *connectedPeripheral;
-@property(nonatomic, strong) CBService *connectedService;
+@property(nonatomic, strong) CBPeripheral *connectedPeripheral;         ///< The currently connected peripheral
+@property(nonatomic, strong) CBService *connectedService;               ///< The connected's peripheral's current service
 
-// Reply characteristic
-@property(nonatomic, strong) CBCharacteristic *replyCharacteristic;
+@property(nonatomic, strong) CBCharacteristic *replyCharacteristic;     ///< Reply characteristics
 
-// Flags to turn on while waiting for CBCentralManager to get ready.
-@property(nonatomic, assign) BOOL subscribeWhenCharacteristicsFound;
-@property(nonatomic, assign) BOOL connectWhenReady;
+@property(nonatomic, assign) BOOL subscribeWhenCharacteristicsFound;    ///< Should we subscribe to any found characteristics?
+@property(nonatomic, assign) BOOL connectWhenReady;                     ///< Should we connect when Bluetooth is ready?
 
+/**
+ @brief Show the Bluetooth status
+ @param message Message to display
+ @param colour Colour to display the message
+ 
+ - Display the message in the centralManagerStatus label
+ */
 - (void)showStatus:(NSString *)message
          andColour:(UIColor *)colour;
+
+/**
+ @brief Get a description for a central manager's state
+ @param state A central manager state
+ @return A descriptive text
+ 
+ Gets a text string that describes the Bluetooth central manager state
+ */
 - (NSString *)getCBCentralStateName:(CBCentralManagerState) state;
-- (void)startScanning;
-- (void)stoppedScanning;
+
+/**
+ @brief Will start scanning for peripherals
+ */
+- (void)willStartScanning;
+
+/**
+ @brief Did stop scanning for peripherals
+ */
+- (void)didStopScanning;
+
+/**
+ @brief Found a peripheral
+ @param peripheral The peripheral
+ @param advertisementData The peripheral's advertising data
+ @param RSSI The Feceived Signal Strength Indicator
+ */
+- (void)didFindPeripheral:(CBPeripheral *)peripheral
+    withAdvertisementData:(NSDictionary *)advertisementData
+                  andRSSI:(NSNumber *)RSSI;
+
+- (void)willConnect;
+
+/**
+ @brief A peripheral successfully connected
+ @param peripheral The peripheral
+ */
+- (void)didConnectToPeripheral:(CBPeripheral *)peripheral;
+
+/**
+ @brief Services were found for the peripheral
+ @param peripheral The peripheral
+ */
+- (void)didFindServices:(CBPeripheral *)peripheral;
+
+/**
+ @brief Characteristics were found for the peripheral's service
+ @param service The service
+ */
+- (void)didFindCharacteristics:(CBService *)service;
+
+- (void)willSubscribe;
+
+- (void)willUnsubscribe;
+
+/**
+ @brief Show UI when peripheral connects
+ 
+ - Pulse the screen green
+ - Show the disconnect button
+ */
+
+- (void)peripheralDidConnect;
+/**
+ @brief Show UI when peripheral disconnects
+ 
+ - Pulse the screen red
+ - Hide the disconnect button
+ */
+- (void)peripheralDidDisconnect;
 
 @end
 
+/** @} */
+
+/**
+ @implements DGKBListenController
+ @addtogroup Controllers
+ @{
+ */
 @implementation DGKBListenController
 
 - (void)viewDidAppear:(BOOL)animated
@@ -85,7 +172,6 @@
     _centralManagerStatus.textColor = colour;
 }
 
-// Converts CBCentralManagerState to a string
 - (NSString *)getCBCentralStateName:(CBCentralManagerState) state
 {
     NSString *stateName;
@@ -117,7 +203,7 @@
     return stateName;
 }
 
-- (void)startScanning
+- (void)willStartScanning
 {
     [_scanButton setTitle: @"Stop"
                  forState: UIControlStateNormal];
@@ -133,9 +219,9 @@
     [_scanner startScanningWithTimeout:DGKBBlueScanningTimeout
                      onFoundPeripheral:^(CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI)
                                        {
-                                           [self foundPeripheral:peripheral
-                                           withAdvertisementData:advertisementData
-                                                         andRSSI:RSSI];
+                                           [self didFindPeripheral:peripheral
+                                             withAdvertisementData:advertisementData
+                                                           andRSSI:RSSI];
                                        }
                             onTimedOut:^
                                        {
@@ -144,11 +230,11 @@
                         
                         //    [self.delegate centralClient:self
                         //                  connectDidFail:[[self class] errorWithDescription:@"Unable to find a BTLE device."]];
-                                           [self stoppedScanning];
+                                           [self didStopScanning];
                                        }];
 }
 
-- (void)stoppedScanning
+- (void)didStopScanning
 {
     DEBUGLog(@"");
     [self.centralManagerActivityIndicator stopAnimating];
@@ -161,9 +247,9 @@
     _scanState = NO;
 }
 
-- (void)foundPeripheral:(CBPeripheral *)peripheral
-  withAdvertisementData:(NSDictionary *)advertisementData
-                andRSSI:(NSNumber *)RSSI
+- (void)didFindPeripheral:(CBPeripheral *)peripheral
+    withAdvertisementData:(NSDictionary *)advertisementData
+                  andRSSI:(NSNumber *)RSSI
 {
     DEBUGLog(@"Peripheral CFUUID: %@", peripheral.UUID);
     DEBUGLog(@"Name: %@", peripheral.name);
@@ -212,7 +298,7 @@
     //       yet.
     if (!foundSuitablePeripheral) return;
     [_scanner stopScanning];
-    [self stoppedScanning];
+    [self didStopScanning];
     DEBUGLog(@"Connecting ... %@", UUID);
     [self showStatus:@"Connecting."
            andColour:[UIColor greenColor]];
@@ -220,7 +306,7 @@
                         timeout:DGKBBlueConnectionTimeout
                       onConnect:^
                                 {
-                                    [self connectedPeripheral:peripheral];
+                                    [self didConnectToPeripheral:peripheral];
                                 }
                    onDisconnect:^
                                 {
@@ -238,7 +324,7 @@
                                 }];
 }
 
-- (void)connectedPeripheral:(CBPeripheral *)peripheral
+- (void)didConnectToPeripheral:(CBPeripheral *)peripheral
 {
     DEBUGLog(@"%@", peripheral.name);
     _connectedPeripheral = peripheral;
@@ -255,11 +341,11 @@
                      withUUIDs:_serviceUUIDs
                onFoundServices:^(CBPeripheral *peripheral)
      {
-         [self foundServices:peripheral];
+         [self didFindServices:peripheral];
      }];
 }
 
-- (void)foundServices:(CBPeripheral *)peripheral
+- (void)didFindServices:(CBPeripheral *)peripheral
 {
     DEBUGLog(@"%@ (Services Count: %d)",
              peripheral.name, peripheral.services.count);
@@ -280,7 +366,7 @@
                               andTimeout:DGKBBlueRequestTimeout
                   onFoundCharacteristics:^(CBService *service)
                                          {
-                                             [self foundCharacteristics:service];
+                                             [self didFindCharacteristics:service];
                                          }
                  onChangedCharacteristic:^(CBCharacteristic *characteristic)
                                          {
@@ -301,7 +387,7 @@
     }
 }
 
-- (void)foundCharacteristics:(CBService *)service
+- (void)didFindCharacteristics:(CBService *)service
 {
     // For logging, just print out all the discovered services.
     DEBUGLog(@"Found %d characteristic(s)", service.characteristics.count);
@@ -312,7 +398,7 @@
     
     if (service.characteristics.count < 1) {
         ERRORLog(@"Did not discover any characteristics for service. aborting.");
-        [self stoppedScanning];
+        [self didStopScanning];
         [_scanner disconnect:_connectedPeripheral];
         _connectedPeripheral = nil;
         return;
@@ -329,7 +415,8 @@
 }
 
 // Does all the necessary things to find the device and make a connection.
-- (void)connect {
+- (void)willConnect
+{
     NSAssert(self.serviceUUIDs.count > 0, @"Need to specify services");
     NSAssert(self.characteristicUUIDs.count > 0, @"Need to specify characteristics UUID");
     
@@ -341,7 +428,7 @@
     
     if (!_connectedPeripheral) {
         _connectWhenReady = YES;
-        [self startScanning];
+        [self willStartScanning];
         return;
     }
     
@@ -363,7 +450,8 @@
 }
 
 // Once connected, subscribes to all the charactersitics that are subscribe-able.
-- (void)subscribe {
+- (void)willSubscribe
+{
     if (!_connectedService) {
         NSLog(@"No connected services for peripheral at all. Unable to subscribe");
         return;
@@ -391,7 +479,7 @@
                                          
                                          if (service.characteristics.count < 1) {
                                              NSLog(@"Did not discover any characteristics for service. aborting.");
-                                             [self stoppedScanning];
+                                             [self didStopScanning];
                                              [_scanner disconnect:_connectedPeripheral];
                                              _connectedPeripheral = nil;
                                              return;
@@ -426,10 +514,12 @@
 //    [self.delegate centralClientDidSubscribe:self];
 }
 
-- (void)unsubscribe {
+- (void)willUnsubscribe
+{
     if (!_connectedService) return;
     
-    for (CBCharacteristic *characteristic in _connectedService.characteristics) {
+    for (CBCharacteristic *characteristic in _connectedService.characteristics)
+    {
         if (characteristic.properties & CBCharacteristicPropertyNotify) {
             [_connectedPeripheral setNotifyValue:NO
                                forCharacteristic:characteristic];
@@ -438,20 +528,23 @@
 //    [self.delegate centralClientDidUnsubscribe:self];
 }
 
-- (void)startRequestTimeout:(CBCharacteristic *)characteristic {
+- (void)startRequestTimeoutMonitor:(CBCharacteristic *)characteristic
+{
     [self cancelRequestTimeoutMonitor:characteristic];
     [self performSelector:@selector(requestDidTimeout:)
                withObject:characteristic
                afterDelay:DGKBBlueRequestTimeout];
 }
 
-- (void)cancelRequestTimeoutMonitor:(CBCharacteristic *)characteristic {
+- (void)cancelRequestTimeoutMonitor:(CBCharacteristic *)characteristic
+{
     [NSObject cancelPreviousPerformRequestsWithTarget:self
                                              selector:@selector(requestDidTimeout:)
                                                object:characteristic];
 }
 
-- (void)requestDidTimeout:(CBCharacteristic *)characteristic {
+- (void)requestDidTimeout:(CBCharacteristic *)characteristic
+{
     DEBUGLog(@"%@", characteristic);
     
 //    [self.delegate centralClient:self
@@ -462,8 +555,8 @@
 }
 
 
-- (void)peripheralDidConnect {
-    // Pulse the screen blue.
+- (void)peripheralDidConnect
+{
     [UIView animateWithDuration:0.1
                      animations:^{
                          self.view.backgroundColor = [UIColor greenColor];
@@ -479,8 +572,8 @@
                      }];
 }
 
-- (void)peripheralDidDisconnect {
-    // Pulse the screen red.
+- (void)peripheralDidDisconnect
+{
     [UIView animateWithDuration:0.1
                      animations:^{
                          self.view.backgroundColor = [UIColor redColor];
@@ -502,18 +595,18 @@
 {
     if (! _scanState)
     {
-        [self startScanning];
+        [self willStartScanning];
     }
     else
     {
         [_scanner stopScanning];
-        [self stoppedScanning];
+        [self didStopScanning];
     }
 }
 
 - (void)didPressDisconnectButton:(id)sender
 {
-    [self stoppedScanning];
+    [self didStopScanning];
     [_scanner disconnect:_connectedPeripheral];
     _connectedPeripheral = nil;
 }
@@ -530,13 +623,13 @@
         case CBCentralManagerStatePoweredOn:
             if (self.subscribeWhenCharacteristicsFound) {
                 if (self.connectedService) {
-                    [self subscribe];
+                    [self willSubscribe];
                     return;
                 }
             }
             
             if (self.connectWhenReady) {
-                [self connect];
+                [self willConnect];
                 return;
             }
             break;
@@ -555,4 +648,7 @@ didWriteValueForCharacteristic:(CBCharacteristic *)characteristic
     DEBUGLog(@"Text: %@", printable);
 
 }
+
 @end
+
+/** @} */

@@ -6,27 +6,47 @@
 //  Copyright (c) 2013 DGKB. All rights reserved.
 //
 
+/**
+ @interface DGKBListenController
+ @addtogroup Controllers
+ @{
+ */
+/**
+ @brief Bluetooth Listener
+ 
+ Listens for Bluetooth peripherals
+ */
 @interface DGKBListenController : UIViewController <CBCentralManagerDelegate, CBPeripheralDelegate>
 
-// initiate scanning
+/// @brief Initiates scanning
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;
 
-// animate when central manager scanning, connecting, etc.
+/// @brief Animates when central manager scanning, connecting, etc.
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *centralManagerActivityIndicator;
 
-// displays CBCentralManager status (role of iphone/ipad)
+/// @brief Label that displays the Bluetooth state
 @property (weak, nonatomic) IBOutlet UILabel *hostBluetoothStatus;
 
-// label which displays central manager activity
+/// @brief Label that displays central manager activity
 @property (weak, nonatomic) IBOutlet UILabel *centralManagerStatus;
 
-// Area for displaying log report
+/// @brief Area for displaying log report
 @property (weak, nonatomic) IBOutlet UITextView *reportLog;
 
-// Disconnect
+/// @brief Disconnects
 @property (nonatomic, strong) IBOutlet UIButton *disconnectButton;
 
+/**
+ @brief The scan button was pressed
+ @param sender Sender of the action
+ */
 - (IBAction)didPressScanButton:(id)sender;
+/**
+ @brief The disconnect button was pressed
+ @param sender Sender of the action
+ */
 - (IBAction)didPressDisconnectButton:(id)sender;
 
 @end
+
+/** @} */

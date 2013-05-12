@@ -11,7 +11,7 @@
 /**
  @mainpage
  @author Derek Knight
- @date started April 2013
+ @date Started April 2013
  
  Blue Mambo App
  
@@ -32,6 +32,7 @@
  */
 @interface DGKBAppDelegate : UIResponder <UIApplicationDelegate>
 
+/// The main window
 @property (strong, nonatomic) UIWindow *window;
 
 @end

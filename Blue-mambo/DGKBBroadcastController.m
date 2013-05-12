@@ -9,29 +9,65 @@
 #import "DGKBBroadcastController.h"
 #import "BlueCommon.h"
 
+/**
+ @extends DGKBBroadcastController
+ @addtogroup Controllers
+ @{
+ */
+
+/**
+ @def SCREENCOLOUR
+ @brief Defines a background colour for this screen
+ */
 #define SCREENCOLOUR [UIColor blueColor]
 
+/**
+ @brief Bluetooth Peripheral extension
+ 
+ Internal functionality for Bluetooth peripheral. Private extensions to DGKBBroadcastController @see DGKBBroadcastController
+ */
 @interface DGKBBroadcastController ()
 
-@property(nonatomic, strong) NSString *serviceName;
-@property(nonatomic, strong) CBUUID *serviceUUID;
-@property(nonatomic, strong) CBUUID *characteristicUUID;
+@property (nonatomic, strong) NSString *serviceName;                    ///< The service name
+@property (nonatomic, strong) CBUUID *serviceUUID;                      ///< The peripheral's service UUID
+@property (nonatomic, strong) CBUUID *characteristicUUID;               ///< The peripheral's service's characteristic UUID
 
-@property (nonatomic, strong) CBPeripheralManager *peripheralManager;
-@property(nonatomic, assign) BOOL serviceRequiresRegistration;
-@property(nonatomic, strong) CBMutableService *service;
-@property(nonatomic, strong) CBMutableCharacteristic *characteristic1;
-@property(nonatomic, strong) CBMutableCharacteristic *characteristic2;
+@property (nonatomic, strong) CBPeripheralManager *peripheralManager;   ///< The peripheral manager
+@property (nonatomic, assign) BOOL serviceRequiresRegistration;         ///< Does the service require registration?
+@property (nonatomic, strong) CBMutableService *service;                ///< The service
+@property (nonatomic, strong) CBMutableCharacteristic *characteristic1; ///< The 1st characteristic
+@property (nonatomic, strong) CBMutableCharacteristic *characteristic2; ///< The 2nd characteristic
 
-@property(nonatomic, strong) NSData *pendingData;
+@property (nonatomic, strong) NSData *pendingData;                      ///< Data that is waiting to be sent
 
+/**
+ @brief Show the Bluetooth status
+ @param message Message to display
+ @param colour Colour to display the message
+ 
+ - Display the message in the centralManagerStatus label
+ */
 - (void)showStatus:(NSString *)message
          andColour:(UIColor *)colour;
 
+/**
+ @brief Get a description for a peripheral manager's state
+ @param state A peripheral manager state
+ @return A descriptive text
+ 
+ Gets a text string that describes the Bluetooth peripheral manager state
+ */
 - (NSString *)getCBPeripheralStateName:(CBPeripheralManagerState) state;
 
 @end
 
+/** @} */
+
+/**
+ @implements DGKBBroadcastController
+ @addtogroup Controllers
+ @{
+ */
 @implementation DGKBBroadcastController
 
 - (void)viewDidAppear:(BOOL)animated
@@ -62,7 +98,8 @@
 
 #pragma mark - Private functions
 
-- (void)enableService {
+- (void)enableService
+{
     // If the service is already registered, we need to re-register it again.
     if (_service) {
         [_peripheralManager removeService:self.service];
@@ -95,7 +132,8 @@
     [_peripheralManager addService:_service];
 }
 
-- (void)disableService {
+- (void)disableService
+{
     [_peripheralManager removeService:_service];
     _service = nil;
     [self stopAdvertising];
@@ -104,7 +142,8 @@
 
 // Called when the BTLE advertisments should start. We don't take down
 // the advertisments unless the user switches us off.
-- (void)startAdvertising {
+- (void)startAdvertising
+{
     if (_peripheralManager.isAdvertising) {
         [_peripheralManager stopAdvertising];
     }
@@ -118,13 +157,15 @@
            andColour:[UIColor greenColor]];
 }
 
-- (void)stopAdvertising {
+- (void)stopAdvertising
+{
     [_peripheralManager stopAdvertising];
     [self showStatus:@"Idle"
            andColour:[UIColor blackColor]];
 }
 
-- (BOOL)isAdvertising {
+- (BOOL)isAdvertising
+{
     return [_peripheralManager isAdvertising];
 }
 
@@ -172,8 +213,10 @@
     return stateName;
 }
 
-- (void)sendToSubscribers:(NSData *)data {
-    if (_peripheralManager.state != CBPeripheralManagerStatePoweredOn) {
+- (void)sendToSubscribers:(NSData *)data
+{
+    if (_peripheralManager.state != CBPeripheralManagerStatePoweredOn)
+    {
         DEBUGLog(@"sendToSubscribers: peripheral not ready for sending state: %d", _peripheralManager.state);
         return;
     }
@@ -181,7 +224,8 @@
     BOOL success = [_peripheralManager updateValue:data
                                  forCharacteristic:self.characteristic1
                               onSubscribedCentrals:nil];
-    if (!success) {
+    if (!success)
+    {
         DEBUGLog(@"Failed to send data, buffering data for retry once ready.");
         _pendingData = data;
         return;
@@ -189,7 +233,8 @@
     DEBUGLog(@"Sent %d bytes", [data length]);
 }
 
-- (void)centralDidConnect {
+- (void)centralDidConnect
+{
     // Pulse the screen blue.
     [UIView animateWithDuration:0.1
                      animations:^{
@@ -326,3 +371,6 @@ didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic {
 }
 
 @end
+
+/** @} */
+

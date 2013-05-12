@@ -34,14 +34,13 @@
 /* Begin PBXFileReference section */
 		1402501527694D29ACF60F8B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CBD74245D854020A7268E78 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
-		65684106173DD09E00C4F150 /* Doxyfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Doxyfile; sourceTree = "<group>"; };
+		65684106173DD09E00C4F150 /* Doxyfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Doxyfile; path = ../Doxyfile; sourceTree = "<group>"; };
 		65D0E55E1711199600DC0B69 /* DGKBBluetoothScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DGKBBluetoothScanner.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		65D0E55F1711199600DC0B69 /* DGKBBluetoothScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DGKBBluetoothScanner.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		712351E017120A8F004261D4 /* Switch-Off-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Switch-Off-icon.png"; sourceTree = "<group>"; };
 		7124CC19170CCF22006543BE /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		7124CC1A170CCF22006543BE /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		7124CC1D170CCFDB006543BE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		7124CC1F170CCFFA006543BE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		7124CC1F170CCFFA006543BE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		7124CC23170CD92D006543BE /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		7124CC25170CDB17006543BE /* DGKBLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DGKBLogging.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		7124CC26170CFE2E006543BE /* BlueCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BlueCommon.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -120,10 +119,6 @@
 				7134890F170CC0FA00F9FDA9 /* Blue-mambo */,
 				71348908170CC0FA00F9FDA9 /* Frameworks */,
 				71348907170CC0FA00F9FDA9 /* Products */,
-				4CBD74245D854020A7268E78 /* Pods.xcconfig */,
-				65684106173DD09E00C4F150 /* Doxyfile */,
-				7124CC1D170CCFDB006543BE /* Podfile */,
-				7124CC1F170CCFFA006543BE /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -170,6 +165,9 @@
 				71348912170CC0FA00F9FDA9 /* InfoPlist.strings */,
 				71348915170CC0FA00F9FDA9 /* main.m */,
 				71348917170CC0FA00F9FDA9 /* Blue-mambo-Prefix.pch */,
+				4CBD74245D854020A7268E78 /* Pods.xcconfig */,
+				65684106173DD09E00C4F150 /* Doxyfile */,
+				7124CC1F170CCFFA006543BE /* README.md */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
