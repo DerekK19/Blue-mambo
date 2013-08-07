@@ -81,6 +81,9 @@
     withAdvertisementData:(NSDictionary *)advertisementData
                   andRSSI:(NSNumber *)RSSI;
 
+/**
+ @brief We are about to connect to the service
+ */
 - (void)willConnect;
 
 /**
@@ -101,8 +104,14 @@
  */
 - (void)didFindCharacteristics:(CBService *)service;
 
+/**
+ @brief We are about to subscribe to the characteristics
+ */
 - (void)willSubscribe;
 
+/**
+ @brief We are about to unsubscribe from the characteristics
+ */
 - (void)willUnsubscribe;
 
 /**
@@ -120,6 +129,30 @@
  - Hide the disconnect button
  */
 - (void)peripheralDidDisconnect;
+
+/**
+ @brief Start request timeout monitor
+ 
+ @param characteristic The characteristic
+ 
+ - Cancel any currently running request timeout monitor
+ - Set up a timer that will call requestDidTimeout after the specfiied period
+ */
+- (void)startRequestTimeoutMonitor:(CBCharacteristic *)characteristic;
+/**
+ @brief Cancel the request timeout monitor
+ 
+ - Remove the timer that was set up to monitor requests
+ */
+- (void)cancelRequestTimeoutMonitor:(CBCharacteristic *)characteristic;
+/**
+ @brief Handle request timeout
+ 
+ @param characteristic The characteristic
+ 
+ - Cancel notifications for the characteristic
+ */
+- (void)requestDidTimeout:(CBCharacteristic *)characteristic;
 
 @end
 

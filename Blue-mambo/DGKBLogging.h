@@ -39,6 +39,7 @@
  
  @endcode
 
+ @{
  */
 
 #import "LoggerClient.h"
@@ -47,6 +48,10 @@
 // IMPORTANT: These values should not be checked in as YES - SHOW_ALL_DEBUG, LOW_LEVEL_DEBUG, SHOW_ALL_DEBUG, LOW_LEVEL_DEBUG
 // Change this locally for debugging only - logging slows UI down severely
 #ifdef DEBUG
+/**
+ @def LOW_LEVEL_DEBUG
+ @brief Set this to TRUE to show low level debug messages
+ */
 #define SHOW_ALL_DEBUG TRUE
 #define LOW_LEVEL_DEBUG FALSE
 #else
@@ -56,8 +61,8 @@
 
 
 
-//Note (ex http://www.cimgf.com/2010/05/02/my-current-prefix-pch-file/ ):
-/*
+/**
+ @note (ex http://www.cimgf.com/2010/05/02/my-current-prefix-pch-file/ ):\n
  As for the do {} while (0) instead of nothing. This is because there are a few rare code situations
  where replacing DLog(@”"); with ; can cause issues. Replacing it with do {} while(0); is safer in
  those rare cases and will get optimized out by the compiler anyway.
@@ -69,6 +74,11 @@
 #define LIBRARYLog(...) LogMessageF(__FILE__, __LINE__, __PRETTY_FUNCTION__, @"Library", 1, @"%@", [NSString stringWithFormat:__VA_ARGS__])
 #define DETAIL_LibraryLog(...) LogMessageF(__FILE__, __LINE__, __PRETTY_FUNCTION__, @"Library", 2, @"%@", [NSString stringWithFormat:__VA_ARGS__])
 #else
+/**
+ @def LIBRARYLog
+ @param ... Content to log
+ @brief Logs output from library functions
+ */
 #define LIBRARYLog(...) do {} while(0);
 #define DETAIL_LibraryLog(...) do {} while(0);
 #endif
@@ -100,3 +110,5 @@
 #define ERRORLog(...) NSLog(@"%s %@", __PRETTY_FUNCTION__, [NSString stringWithFormat:__VA_ARGS__])
 
 #endif
+
+/** @} */
