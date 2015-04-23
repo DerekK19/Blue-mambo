@@ -145,12 +145,12 @@
 		7134890F170CC0FA00F9FDA9 /* Blue-mambo */ = {
 			isa = PBXGroup;
 			children = (
-				71348921170CC0FA00F9FDA9 /* MainStoryboard.storyboard */,
 				71348918170CC0FA00F9FDA9 /* DGKBAppDelegate.h */,
 				71348919170CC0FA00F9FDA9 /* DGKBAppDelegate.m */,
 				65D0E55E1711199600DC0B69 /* DGKBBluetoothScanner.h */,
 				65D0E55F1711199600DC0B69 /* DGKBBluetoothScanner.m */,
 				7124CC22170CD108006543BE /* Controllers */,
+				71348921170CC0FA00F9FDA9 /* MainStoryboard.storyboard */,
 				7124CC21170CD0D5006543BE /* Resources */,
 				71348910170CC0FA00F9FDA9 /* Supporting Files */,
 			);

@@ -380,7 +380,7 @@
 
 - (void)didFindServices:(CBPeripheral *)peripheral
 {
-    DEBUGLog(@"%@ (Services Count: %d)",
+    DEBUGLog(@"%@ (Services Count: %ld)",
              peripheral.name, peripheral.services.count);
     
     for (CBService *service in peripheral.services) {
@@ -423,9 +423,9 @@
 - (void)didFindCharacteristics:(CBService *)service
 {
     // For logging, just print out all the discovered services.
-    DEBUGLog(@"Found %d characteristic(s)", service.characteristics.count);
+    DEBUGLog(@"Found %ld characteristic(s)", service.characteristics.count);
     for (CBCharacteristic *characteristic in service.characteristics) {
-        DEBUGLog(@"Characteristic: %@ (%d)", characteristic.UUID, characteristic.properties);
+        DEBUGLog(@"Characteristic: %@ (%ld)", characteristic.UUID, characteristic.properties);
         if (characteristic.properties & CBCharacteristicPropertyWrite) _replyCharacteristic = characteristic;
     }
     
@@ -499,9 +499,9 @@
               onFoundCharacteristics:^(CBService *service)
                                      {
                                          // For logging, just print out all the discovered services.
-                                         DEBUGLog(@"Found %d characteristic(s)", service.characteristics.count);
+                                         DEBUGLog(@"Found %ld characteristic(s)", service.characteristics.count);
                                          for (CBCharacteristic *characteristic in service.characteristics) {
-                                             DEBUGLog(@"Characteristic: %@ (%d)", characteristic.UUID, characteristic.properties);
+                                             DEBUGLog(@"Characteristic: %@ (%ld)", characteristic.UUID, characteristic.properties);
                                              if (characteristic.properties & CBCharacteristicPropertyWrite) _replyCharacteristic = characteristic;
                                          }
                                          
@@ -667,7 +667,7 @@
             }
             break;
         default:
-            DEBUGLog(@"centralManager did update: %d", central.state);
+            DEBUGLog(@"centralManager did update: %ld", central.state);
             break;
     }
 }

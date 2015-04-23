@@ -42,8 +42,10 @@
  @{
  */
 
+/**
 #import "LoggerClient.h"
 #import "LoggerCommon.h"
+*/
 
 // IMPORTANT: These values should not be checked in as YES - SHOW_ALL_DEBUG, LOW_LEVEL_DEBUG, SHOW_ALL_DEBUG, LOW_LEVEL_DEBUG
 // Change this locally for debugging only - logging slows UI down severely

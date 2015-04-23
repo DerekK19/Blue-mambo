@@ -217,7 +217,7 @@
 {
     if (_peripheralManager.state != CBPeripheralManagerStatePoweredOn)
     {
-        DEBUGLog(@"sendToSubscribers: peripheral not ready for sending state: %d", _peripheralManager.state);
+        DEBUGLog(@"sendToSubscribers: peripheral not ready for sending state: %ld", _peripheralManager.state);
         return;
     }
     
@@ -230,7 +230,7 @@
         _pendingData = data;
         return;
     }
-    DEBUGLog(@"Sent %d bytes", [data length]);
+    DEBUGLog(@"Sent %ld bytes", [data length]);
 }
 
 - (void)centralDidConnect
@@ -274,17 +274,12 @@
 
 - (void)didPressDisconnectButton:(id)sender
 {
-    
+    if (_peripheralManager.isAdvertising) {
+        [_peripheralManager stopAdvertising];
+    }
 }
 
 #pragma mark - CBPeripheralManagerDelegate delegate implementation
-
-- (void)peripheralManager:(CBPeripheralManager *)peripheral
-            didAddService:(CBService *)service
-                    error:(NSError *)error {
-    // As soon as the service is added, we should start advertising.
-    [self startAdvertising];
-}
 
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
 {
@@ -325,6 +320,19 @@
 }
 
 - (void)peripheralManager:(CBPeripheralManager *)peripheral
+         willRestoreState:(NSDictionary *)dict
+{
+    DEBUGLog(@"");
+}
+
+- (void)peripheralManager:(CBPeripheralManager *)peripheral
+            didAddService:(CBService *)service
+                    error:(NSError *)error {
+    // As soon as the service is added, we should start advertising.
+    [self startAdvertising];
+}
+
+- (void)peripheralManager:(CBPeripheralManager *)peripheral
                   central:(CBCentral *)central
 didSubscribeToCharacteristic:(CBCharacteristic *)characteristic {
     DEBUGLog(@"%@", characteristic.UUID);
@@ -340,15 +348,6 @@ didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic {
     [self centralDidDisconnect];
 }
 
-- (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral
-                                       error:(NSError *)error {
-    if (error) {
-        DEBUGLog(@"Error: %@", error);
-        return;
-    }
-    DEBUGLog(@"");
-}
-
 - (void)peripheralManagerIsReadyToUpdateSubscribers:(CBPeripheralManager *)peripheral {
     DEBUGLog(@"");
     if (_pendingData) {
@@ -356,6 +355,15 @@ didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic {
         _pendingData = nil;
         [self sendToSubscribers:data];
     }
+}
+
+- (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral
+                                       error:(NSError *)error {
+    if (error) {
+        DEBUGLog(@"Error: %@", error);
+        return;
+    }
+    DEBUGLog(@"");
 }
 
 - (void)peripheralManager:(CBPeripheralManager *)peripheral
