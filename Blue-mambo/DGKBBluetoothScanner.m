@@ -309,7 +309,7 @@
     DEBUGLog(@"Start discovering...");
     _discoverBlock = block;
     _currentPeripheral = peripheral;
-    [peripheral setDelegate:self];
+    peripheral.delegate = self;
     [peripheral discoverServices:serviceUUIDs];
 }
 
@@ -464,6 +464,13 @@ didDiscoverServices:(NSError *)error
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral
+didDiscoverIncludedServicesForService:(CBService *)service
+             error:(NSError *)error
+{
+    DEBUGLog(@"%@", peripheral);
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral
 didDiscoverCharacteristicsForService:(CBService *)service
              error:(NSError *)error
 {
@@ -474,6 +481,13 @@ didDiscoverCharacteristicsForService:(CBService *)service
         return;
     }
     _characteristicsBlock(service);
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral
+didDiscoverDescriptorsForCharacteristic:(CBCharacteristic *)characteristic
+             error:(NSError *)error
+{
+    DEBUGLog(@"%@", peripheral);
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral
@@ -489,6 +503,42 @@ didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic
         return;
     }
     _changeBlock (characteristic);
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral
+didUpdateValueForDescriptor:(CBDescriptor *)descriptor
+             error:(NSError *)error
+{
+    DEBUGLog(@"%@", peripheral);
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral
+didWriteValueForCharacteristic:(CBCharacteristic *)characteristic
+             error:(NSError *)error
+{
+    DEBUGLog(@"%@", peripheral);
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral
+didWriteValueForDescriptor:(CBDescriptor *)descriptor
+             error:(NSError *)error
+{
+    DEBUGLog(@"%@", peripheral);
+}
+- (void)peripheralDidInvalidateServices:(CBPeripheral *)peripheral
+{
+    DEBUGLog(@"%@", peripheral);
+}
+
+- (void)peripheralDidUpdateName:(CBPeripheral *)peripheral
+{
+    DEBUGLog(@"%@", peripheral);
+}
+
+- (void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(NSError *)error
+{
+    DEBUGLog(@"%@ RSSI: %@", peripheral, peripheral.RSSI);
+    DEBUGLog(@"Error: %@", error);
 }
 
 @end

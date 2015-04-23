@@ -284,10 +284,12 @@
     withAdvertisementData:(NSDictionary *)advertisementData
                   andRSSI:(NSNumber *)RSSI
 {
-    DEBUGLog(@"Peripheral CFUUID: %@", peripheral.UUID);
-    DEBUGLog(@"Name: %@", peripheral.name);
-    DEBUGLog(@"Advertisment Data: %@", advertisementData);
-    DEBUGLog(@"RSSI: %@", RSSI);
+    NSString *adData = @"";
+    for (NSString *key in advertisementData) {
+        adData = [adData stringByAppendingString:[NSString stringWithFormat:@"\n  %@: %@", key, advertisementData[key]]];
+    }
+    
+    DEBUGLog(@"\nPeripheral CFUUID: %@\n             Name: %@\n             RSSI: %@\nAdvertisment Data:%@", peripheral.UUID, peripheral.name, RSSI, adData);
     
     BOOL foundSuitablePeripheral = NO;
     
@@ -343,7 +345,7 @@
                                 }
                    onDisconnect:^
                                 {
-                                    DEBUGLog(@"%@", peripheral.name);
+                                    DEBUGLog(@"%@ Disconnected", peripheral.name);
                                     _connectedPeripheral = nil;
                                     _connectedService = nil;
          
@@ -351,7 +353,7 @@
                                 }
                      onTimedOut:^
                                 {
-                                    DEBUGLog(@"%@", peripheral.name);
+                                    DEBUGLog(@"%@ Timed out", peripheral.name);
                                     [self showStatus:@"Failed to connect"
                                            andColour:[UIColor redColor]];
                                 }];
@@ -362,6 +364,8 @@
     DEBUGLog(@"%@", peripheral.name);
     _connectedPeripheral = peripheral;
     
+    [peripheral readRSSI];
+
     // By specifying the actual services we want to connect to, this will
     // work for iOS apps that are in the background.
     //
@@ -599,7 +603,7 @@
                                           animations:^{
                                               self.view.backgroundColor = SCREENCOLOUR;
                                           }];
-                         [self showStatus:@"Connected"
+                         [self showStatus:[NSString stringWithFormat:@"Connected %@", _connectedPeripheral.RSSI]
                                 andColour:[UIColor greenColor]];
                          _disconnectButton.hidden = NO;
                      }];

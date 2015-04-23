@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" promptedForUpgradeToXcode5="NO" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
@@ -7,10 +7,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Listen-->
+        <!--Central-->
         <scene sceneID="11">
             <objects>
-                <viewController title="Listen" id="2" customClass="DGKBListenController" sceneMemberID="viewController">
+                <viewController title="Central" id="2" customClass="DGKBListenController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2uG-XK-25K"/>
                         <viewControllerLayoutGuide type="bottom" id="gGf-aJ-OwZ"/>
@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Xr-aL-raM">
-                                <rect key="frame" x="20" y="12" width="280" height="21"/>
+                                <rect key="frame" x="20" y="20" width="280" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Rzo-r2-h4x"/>
                                 </constraints>
@@ -29,7 +29,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Q0-g9-O2Y">
-                                <rect key="frame" x="20" y="41" width="280" height="21"/>
+                                <rect key="frame" x="20" y="49" width="280" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="qsp-CJ-rhz"/>
                                 </constraints>
@@ -37,8 +37,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Listen View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="20">
-                                <rect key="frame" x="20" y="81" width="280" height="32"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Central Mode" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="20">
+                                <rect key="frame" x="20" y="89" width="280" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="fuF-xk-nLf"/>
                                 </constraints>
@@ -47,7 +47,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E3N-vC-SRt">
-                                <rect key="frame" x="21" y="123" width="278" height="245"/>
+                                <rect key="frame" x="21" y="131" width="278" height="237"/>
                                 <color key="backgroundColor" red="0.99127184196899254" green="1" blue="0.84754081971592343" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
@@ -94,7 +94,7 @@
                             <constraint firstItem="E3N-vC-SRt" firstAttribute="leading" secondItem="16" secondAttribute="leadingMargin" constant="5" id="GZa-eL-Vqb"/>
                             <constraint firstItem="6Q0-g9-O2Y" firstAttribute="top" secondItem="6Xr-aL-raM" secondAttribute="bottom" constant="8" id="ICy-md-bQV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="20" secondAttribute="trailing" constant="4" id="Lic-2H-LBG"/>
-                            <constraint firstItem="6Xr-aL-raM" firstAttribute="top" secondItem="16" secondAttribute="topMargin" constant="12" id="QfL-db-pg7"/>
+                            <constraint firstItem="6Xr-aL-raM" firstAttribute="top" secondItem="16" secondAttribute="topMargin" constant="20" id="QfL-db-pg7"/>
                             <constraint firstItem="20" firstAttribute="top" secondItem="6Q0-g9-O2Y" secondAttribute="bottom" constant="19" id="R0e-td-cTx"/>
                             <constraint firstItem="20" firstAttribute="leading" secondItem="16" secondAttribute="leadingMargin" constant="4" id="RtB-TY-cNk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6Q0-g9-O2Y" secondAttribute="trailing" constant="4" id="ZQd-pE-WwO"/>
@@ -107,7 +107,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="E3N-vC-SRt" secondAttribute="trailing" constant="5" id="yHO-wB-ITV"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Listen" image="listen.png" id="7"/>
+                    <tabBarItem key="tabBarItem" title="Central" image="listen.png" id="7"/>
                     <connections>
                         <outlet property="centralManagerStatus" destination="6Q0-g9-O2Y" id="WZO-2h-n7K"/>
                         <outlet property="disconnectButton" destination="7Sq-E0-uvf" id="k3g-4j-084"/>
@@ -120,10 +120,10 @@
             </objects>
             <point key="canvasLocation" x="653" y="-138"/>
         </scene>
-        <!--Broadcast-->
+        <!--Peripheral-->
         <scene sceneID="13">
             <objects>
-                <viewController title="Broadcast" id="3" customClass="DGKBBroadcastController" sceneMemberID="viewController">
+                <viewController title="Peripheral" id="3" customClass="DGKBBroadcastController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MLM-ut-f8M"/>
                         <viewControllerLayoutGuide type="bottom" id="Y45-FE-Jyv"/>
@@ -133,7 +133,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMh-KD-LjG">
-                                <rect key="frame" x="20" y="12" width="280" height="21"/>
+                                <rect key="frame" x="20" y="20" width="280" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="wGn-6u-hQg"/>
                                 </constraints>
@@ -142,7 +142,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DIw-tB-exA">
-                                <rect key="frame" x="20" y="41" width="280" height="21"/>
+                                <rect key="frame" x="20" y="49" width="280" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="kxk-3j-IYd"/>
                                 </constraints>
@@ -150,8 +150,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Broadcast View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="22">
-                                <rect key="frame" x="20" y="79" width="280" height="32"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Peripheral Mode" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="22">
+                                <rect key="frame" x="20" y="87" width="280" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="qc7-8L-B1h"/>
                                 </constraints>
@@ -160,7 +160,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gw9-VM-Rd3">
-                                <rect key="frame" x="21" y="125" width="278" height="243"/>
+                                <rect key="frame" x="21" y="133" width="278" height="235"/>
                                 <color key="backgroundColor" red="0.99127184199999996" green="1" blue="0.84754081969999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
@@ -186,7 +186,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="bMh-KD-LjG" firstAttribute="top" secondItem="17" secondAttribute="topMargin" constant="12" id="1bT-zw-Tso"/>
+                            <constraint firstItem="bMh-KD-LjG" firstAttribute="top" secondItem="17" secondAttribute="topMargin" constant="20" id="1bT-zw-Tso"/>
                             <constraint firstAttribute="trailingMargin" secondItem="22" secondAttribute="trailing" constant="4" id="34p-Nu-8Vt"/>
                             <constraint firstItem="DIw-tB-exA" firstAttribute="leading" secondItem="17" secondAttribute="leadingMargin" constant="4" id="6Vd-JP-PfH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gw9-VM-Rd3" secondAttribute="trailing" constant="5" id="MgG-uG-T5K"/>
@@ -203,7 +203,7 @@
                             <constraint firstItem="gw9-VM-Rd3" firstAttribute="top" secondItem="22" secondAttribute="bottom" constant="14" id="y7f-pU-3Kk"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Broadcast" image="broadcast.png" id="6"/>
+                    <tabBarItem key="tabBarItem" title="Peripheral" image="broadcast.png" id="6"/>
                     <connections>
                         <outlet property="disconnectButton" destination="Ng5-OX-8k8" id="bSh-Pc-ZKg"/>
                         <outlet property="hostBluetoothStatus" destination="bMh-KD-LjG" id="AUG-OC-UQc"/>
@@ -215,10 +215,10 @@
             </objects>
             <point key="canvasLocation" x="653" y="498"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Controller-->
         <scene sceneID="15">
             <objects>
-                <tabBarController id="4" sceneMemberID="viewController">
+                <tabBarController id="4" customClass="DGKBMainController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5">
                         <rect key="frame" x="0.0" y="431" width="320" height="49"/>

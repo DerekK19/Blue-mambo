@@ -339,6 +339,7 @@ didSubscribeToCharacteristic:(CBCharacteristic *)characteristic {
     DEBUGLog(@"Central: %@", central.UUID);
     [self centralDidConnect];
     [self sendToSubscribers:[@"Hello" dataUsingEncoding:NSUTF8StringEncoding]];
+    
 }
 
 - (void)peripheralManager:(CBPeripheralManager *)peripheral

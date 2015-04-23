@@ -16,7 +16,7 @@
  
  Listens for Bluetooth peripherals
  */
-@interface DGKBListenController : UIViewController <CBCentralManagerDelegate, CBPeripheralDelegate>
+@interface DGKBListenController : UIViewController <CBCentralManagerDelegate>
 
 /// @brief Initiates scanning
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;
