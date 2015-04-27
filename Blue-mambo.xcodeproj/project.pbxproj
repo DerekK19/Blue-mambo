@@ -204,9 +204,14 @@
 		713488FE170CC0FA00F9FDA9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = ASB;
+				CLASSPREFIX = DGKB;
 				LastUpgradeCheck = 0460;
-				ORGANIZATIONNAME = ASB;
+				ORGANIZATIONNAME = "Derek Knight";
+				TargetAttributes = {
+					71348905170CC0FA00F9FDA9 = {
+						DevelopmentTeam = DX8B97QV93;
+					};
+				};
 			};
 			buildConfigurationList = 71348901170CC0FA00F9FDA9 /* Build configuration list for PBXProject "Blue-mambo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -360,6 +365,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4CBD74245D854020A7268E78 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Blue-mambo/Blue-mambo-Prefix.pch";
 				INFOPLIST_FILE = "Blue-mambo/Blue-mambo-Info.plist";
@@ -373,6 +379,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4CBD74245D854020A7268E78 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Blue-mambo/Blue-mambo-Prefix.pch";
 				INFOPLIST_FILE = "Blue-mambo/Blue-mambo-Info.plist";
